@@ -2798,9 +2798,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lifi/widget@^2.0.0-alpha.0, @lifi/widget@workspace:packages/widget":
-  version: 0.0.0-use.local
-  resolution: "@lifi/widget@workspace:packages/widget"
+"@lifi/widget@npm:^2.0.0-alpha.0":
+  version: 2.0.0-alpha.0
+  resolution: "@lifi/widget@npm:2.0.0-alpha.0"
   dependencies:
     "@emotion/react": ^11.10.6
     "@emotion/styled": ^11.10.6
@@ -2816,7 +2816,6 @@ __metadata:
     "@tanstack/react-query": ^4.28.0
     "@tanstack/react-virtual": ^3.0.0-beta.54
     big.js: ^6.2.1
-    cpy-cli: ^4.2.0
     i18next: ^22.4.13
     i18next-browser-languagedetector: ^7.0.1
     microdiff: ^1.3.1
@@ -2828,7 +2827,6 @@ __metadata:
     react-intersection-observer: ^9.4.3
     react-router-dom: ^6.9.0
     react-timer-hook: ^3.0.5
-    typescript: ^5.0.2
     uuid: ^9.0.0
     zustand: ^4.3.6
   peerDependencies:
@@ -2838,8 +2836,9 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  languageName: unknown
-  linkType: soft
+  checksum: 50660f9e5b1d1110e4112cb9c748d8cc00c0516a16daf4cf6cff1311a4c4e214cdfbe9111bc9404f6c337f67c87a560b6e434a5758ac270a3ebc6e6bf5685408
+  languageName: node
+  linkType: hard
 
 "@metamask/detect-provider@npm:^1.2.0":
   version: 1.2.0
@@ -15983,6 +15982,49 @@ __metadata:
   checksum: 1a5c563d3c1b52d5f893c8b61afe11abc3bab4afac492e8da5bde69d550de701cf9806235f20a47b5c8fa8a1d6a9135841de2596535e998027a54589000e66d1
   languageName: node
   linkType: hard
+
+"whichswap-widget@workspace:packages/widget":
+  version: 0.0.0-use.local
+  resolution: "whichswap-widget@workspace:packages/widget"
+  dependencies:
+    "@emotion/react": ^11.10.6
+    "@emotion/styled": ^11.10.6
+    "@ethersproject/abstract-signer": ^5.7.0
+    "@ethersproject/address": ^5.7.0
+    "@ethersproject/experimental": ^5.7.0
+    "@ethersproject/providers": ^5.7.2
+    "@lifi/sdk": ^2.0.0-beta.6
+    "@lifi/wallet-management": ^1.2.10
+    "@mui/icons-material": ^5.11.11
+    "@mui/lab": ^5.0.0-alpha.124
+    "@mui/material": ^5.11.14
+    "@tanstack/react-query": ^4.28.0
+    "@tanstack/react-virtual": ^3.0.0-beta.54
+    big.js: ^6.2.1
+    cpy-cli: ^4.2.0
+    i18next: ^22.4.13
+    i18next-browser-languagedetector: ^7.0.1
+    microdiff: ^1.3.1
+    mitt: ^3.0.0
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-hook-form: ^7.43.7
+    react-i18next: ^12.2.0
+    react-intersection-observer: ^9.4.3
+    react-router-dom: ^6.9.0
+    react-timer-hook: ^3.0.5
+    typescript: ^5.0.2
+    uuid: ^9.0.0
+    zustand: ^4.3.6
+  peerDependencies:
+    "@types/react": ^18.0.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  languageName: unknown
+  linkType: soft
 
 "wide-align@npm:^1.1.5":
   version: 1.1.5
