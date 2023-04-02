@@ -1,5 +1,5 @@
 {
-  "name": "@lifi/widget",
+  "name": "whichswap-widget",
   "version": "2.0.0",
   "description": "LI.FI Widget for cross-chain bridging and swapping. It will drive your multi-chain strategy and attract new users from everywhere.",
   "main": "./src/index.ts",
@@ -92,5 +92,6 @@
   "eslintConfig": {
     "extends": "../../.eslintrc"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "gitHead": "774271738064715225f01d778d37422452746d83"
 }
