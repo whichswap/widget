@@ -30,6 +30,7 @@ export const NavigationHeader: React.FC = () => {
 
 
   const { fromChain, fromToken, toToken, toChain } = getValues();
+  console.log(fromChain);
 
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)

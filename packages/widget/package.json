@@ -22,7 +22,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public"
+    "@whichswap:registry": "https://npm.pkg.github.com"
   },
   "author": "Eugene Chybisov <eugene@li.finance>",
   "homepage": "https://github.com/lifinance/widget",
