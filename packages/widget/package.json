@@ -21,9 +21,6 @@
       "yarn run prettier:fix"
     ]
   },
-  "publishConfig": {
-    "@whichswap:registry": "https://npm.pkg.github.com"
-  },
   "author": "Eugene Chybisov <eugene@li.finance>",
   "homepage": "https://github.com/lifinance/widget",
   "repository": {
@@ -93,5 +90,5 @@
     "extends": "../../.eslintrc"
   },
   "sideEffects": false,
-  "gitHead": "2a14701a5729f06caf9db6499510e039205e24a8"
+  "gitHead": "f24b04e428f0209e714fb920a3da5f2bf01a73be"
 }
