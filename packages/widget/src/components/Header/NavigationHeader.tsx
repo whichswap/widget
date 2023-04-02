@@ -1,6 +1,9 @@
+//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
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ContentCopyIcon from '@mui/icons-material/ContentCopyRounded';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -13,14 +16,20 @@ import {
 } from '../../utils';
 import { HeaderAppBar } from './Header.style';
 import { useHeaderActionStore } from './useHeaderActionStore';
+import { useFormContext } from 'react-hook-form';
 
 export const NavigationHeader: React.FC = () => {
   const { t } = useTranslation();
-  const { variant } = useWidgetConfig();
+  const { variant, ...rest } = useWidgetConfig();
   const { navigate, navigateBack } = useNavigateBack();
   const { account } = useWallet();
   const { element } = useHeaderActionStore();
   const { pathname } = useLocation();
+
+  const { getValues } = useFormContext();
+
+
+  const { fromChain, fromToken, toToken, toChain } = getValues();
 
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)
@@ -101,6 +110,25 @@ export const NavigationHeader: React.FC = () => {
                   </IconButton>
                 </Tooltip>
               ) : null}
+              {fromToken || toToken ? <Tooltip title="copy" enterDelay={400} arrow>
+                <IconButton
+                  size="medium"
+                  onClick={async () => {
+                    const fromTokenQuery = fromToken
+                      ? `&fromToken=${fromToken}`
+                      : '';
+                    const toTokenQuery = toToken ? `&toToken=${toToken}` : '';
+                    const toChainQuery = toChain ? `&toChain=${toChain}` : '';
+                    const url = `https://whichswap.com?fromChain=${fromChain}${toChainQuery}${fromTokenQuery}${toTokenQuery}`;
+                    await navigator.clipboard.writeText(url);
+                  }}
+                  sx={{
+                    marginRight: -1.25,
+                  }}
+                >
+                  <ContentCopyIcon />
+                </IconButton>
+              </Tooltip> : null }
               <Tooltip title={t(`header.settings`)} enterDelay={400} arrow>
                 <IconButton
                   size="medium"
