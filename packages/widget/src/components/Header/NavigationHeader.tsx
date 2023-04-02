@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useNavigateBack } from '../../hooks';
 import { useWallet, useWidgetConfig } from '../../providers';
+import { useChains } from '../../hooks';
 import {
   backButtonRoutes,
   navigationRoutes,
@@ -20,7 +21,7 @@ import { useFormContext } from 'react-hook-form';
 
 export const NavigationHeader: React.FC = () => {
   const { t } = useTranslation();
-  const { variant, ...rest } = useWidgetConfig();
+  const { variant } = useWidgetConfig();
   const { navigate, navigateBack } = useNavigateBack();
   const { account } = useWallet();
   const { element } = useHeaderActionStore();
@@ -28,9 +29,15 @@ export const NavigationHeader: React.FC = () => {
 
   const { getValues } = useFormContext();
 
-
   const { fromChain, fromToken, toToken, toChain } = getValues();
-  console.log(fromChain);
+
+  const { getChainById } = useChains();
+
+  const data1 = getChainById(fromChain);
+  const fromChainKey = data1?.key;
+
+  const data2 = getChainById(toChain);
+  const toChainKey = data2?.key;
 
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)
@@ -115,12 +122,13 @@ export const NavigationHeader: React.FC = () => {
                 <IconButton
                   size="medium"
                   onClick={async () => {
+                    const fromChainQuery = fromChainKey ? `?fromChain=${fromChainKey}` : `?fromChain=${fromChain}`;
                     const fromTokenQuery = fromToken
                       ? `&fromToken=${fromToken}`
                       : '';
                     const toTokenQuery = toToken ? `&toToken=${toToken}` : '';
-                    const toChainQuery = toChain ? `&toChain=${toChain}` : '';
-                    const url = `https://whichswap.com?fromChain=${fromChain}${toChainQuery}${fromTokenQuery}${toTokenQuery}`;
+                    const toChainQuery = toChainKey ? `&toChain=${toChainKey}` : `&toChain=${toChain}`;
+                    const url = `https://whichswap.com${fromChainQuery}${toChainQuery}${fromTokenQuery}${toTokenQuery}`;
                     await navigator.clipboard.writeText(url);
                   }}
                   sx={{

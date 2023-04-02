@@ -31,7 +31,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: https://npm.pkg.github.com/
       - name: Install modules
         run: yarn install
       - name: Build
@@ -39,4 +39,4 @@ jobs:
       - name: Publish to npm
         run: yarn release:publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
