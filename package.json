@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.4",
   "private": true,
   "sideEffects": false,
   "packageManager": "yarn@3.5.0",
@@ -21,6 +21,10 @@
       "prerelease": "yarn && git add ."
     }
   },
+  "repository": {
+		"url": "https://github.com/whichspace/widget",
+		"type": "git"
+	},
   "devDependencies": {
     "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
