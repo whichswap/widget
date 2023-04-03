@@ -4,8 +4,8 @@ import {
   switchChain,
   switchChainAndAddToken,
 } from '@lifi/wallet-management';
-import type { WidgetVariant } from '@lifi/widget';
-import { LiFiWidget } from '@lifi/widget';
+import type { WidgetVariant } from '@whichswap/widget';
+import { LiFiWidget } from '@whichswap/widget';
 import {
   Box,
   // Button,
@@ -174,6 +174,8 @@ export const App = () => {
       setDarkMode(systemColor && prefersDarkMode);
     }
   }, [darkMode, prefersDarkMode, primary, secondary, systemColor]);
+
+  console.log(config);
 
   return (
     <ThemeProvider theme={theme}>

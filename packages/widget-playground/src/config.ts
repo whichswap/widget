@@ -25,7 +25,7 @@ export const widgetBaseConfig: WidgetConfig = {
     deny: [],
   },
   // useRecommendedRoute: true,
-  buildSwapUrl: true,
+  buildSwapUrl: false,
   // disabledUI: ['toAddress', 'fromAmount', 'toToken', 'fromToken'],
   // requiredUI: ['toAddress'],
   // slippage: 0.003,

@@ -2781,11 +2781,11 @@ __metadata:
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
     "@lifi/sdk": ^2.0.0-beta.6
     "@lifi/wallet-management": ^1.2.10
-    "@lifi/widget": ^2.0.0-alpha.0
     "@mui/icons-material": ^5.11.11
     "@mui/lab": ^5.0.0-alpha.124
     "@mui/material": ^5.11.14
     "@vitejs/plugin-react": ^3.1.0
+    "@whichswap/widget": ^2.0.8
     ethers: ^5.7.2
     events: ^3.3.0
     react: ^18.2.0
@@ -4916,7 +4916,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whichswap/widget@workspace:packages/widget":
+"@whichswap/widget@^2.0.8, @whichswap/widget@workspace:packages/widget":
   version: 0.0.0-use.local
   resolution: "@whichswap/widget@workspace:packages/widget"
   dependencies:

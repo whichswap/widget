@@ -26,10 +26,10 @@
   "dependencies": {
     "@lifi/sdk": "^2.0.0-beta.6",
     "@lifi/wallet-management": "^1.2.10",
-    "@lifi/widget": "^2.0.0-alpha.0",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "^5.0.0-alpha.124",
     "@mui/material": "^5.11.14",
+    "@whichswap/widget": "^2.0.8",
     "ethers": "^5.7.2",
     "events": "^3.3.0",
     "react": "^18.2.0",

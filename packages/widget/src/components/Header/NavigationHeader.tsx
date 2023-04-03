@@ -1,5 +1,5 @@
 //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
-
+import { useEffect } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -18,6 +18,7 @@ import {
 import { HeaderAppBar } from './Header.style';
 import { useHeaderActionStore } from './useHeaderActionStore';
 import { useFormContext } from 'react-hook-form';
+import { CompressOutlined } from '@mui/icons-material';
 
 export const NavigationHeader: React.FC = () => {
   const { t } = useTranslation();
@@ -38,6 +39,7 @@ export const NavigationHeader: React.FC = () => {
 
   const data2 = getChainById(toChain);
   const toChainKey = data2?.key;
+
 
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)
@@ -85,6 +87,31 @@ export const NavigationHeader: React.FC = () => {
       }
     }
   };
+
+
+  useEffect(()=>{
+
+    const url = new URL(window.location as any);
+
+    let params = [];
+    if (fromChain) {
+      params.push(`?fromChain=${fromChainKey}`);
+    }
+    if (toChain) {
+      params.push(`&toChain=${fromChainKey}`);
+    }
+    if (fromToken) {
+      params.push(`&fromToken=${fromToken}`);
+    }
+    if (toToken) {
+      params.push(`&toToken=${toToken}`);
+    }
+    const paramsString = params.join('');
+
+    console.log(`${url.origin}${paramsString}`)
+    window.history.replaceState(null, '', `${url.origin}${paramsString}`);
+  },[fromChain, fromToken, toToken, toChain])
+
 
   return (
     <HeaderAppBar elevation={0}>
