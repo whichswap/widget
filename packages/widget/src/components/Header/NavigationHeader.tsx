@@ -95,14 +95,14 @@ export const NavigationHeader: React.FC = () => {
 
   useEffect(()=>{
     
-    if (!first.current && (fromChainKey ||  toChainKey)) {
+    if (!first.current && (fromChainKey || toChainKey)) {
       const url = new URL(window.location as any);
         let params = [];
         if (fromChainKey && fromToken) {
           params.push(`?fromChain=${fromChainKey}`);
           params.push(`&fromToken=${fromToken}`);
         }
-        if (fromChainKey && toToken) {
+        if (toChainKey && toToken) {
           params.push(`&toChain=${toChainKey}`);
           params.push(`&toToken=${toToken}`);
         }
@@ -111,7 +111,7 @@ export const NavigationHeader: React.FC = () => {
        } else {
         first.current = false
       }
-  },[fromChainKey,fromChainKey,fromToken,toToken])
+  },[fromChainKey,toChainKey,fromToken,toToken])
 
 //http://localhost:3000/?fromChain=eth&toChain=eth&fromToken=0x0000000000000000000000000000000000000000&toToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   return (
