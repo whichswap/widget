@@ -98,16 +98,12 @@ export const NavigationHeader: React.FC = () => {
     if (!first.current && (fromChainKey ||  toChainKey)) {
       const url = new URL(window.location as any);
         let params = [];
-        if (fromChain) {
+        if (fromChainKey && fromToken) {
           params.push(`?fromChain=${fromChainKey}`);
-        }
-        if (toChain) {
-          params.push(`&toChain=${toChainKey}`);
-        }
-        if (fromToken) {
           params.push(`&fromToken=${fromToken}`);
         }
-        if (toToken) {
+        if (fromChainKey && toToken) {
+          params.push(`&toChain=${toChainKey}`);
           params.push(`&toToken=${toToken}`);
         }
         const paramsString = params.join('');
@@ -115,7 +111,7 @@ export const NavigationHeader: React.FC = () => {
        } else {
         first.current = false
       }
-  },[fromChainKey, toChainKey, toToken, fromToken])
+  },[fromChainKey,fromChainKey,fromToken,toToken])
 
 //http://localhost:3000/?fromChain=eth&toChain=eth&fromToken=0x0000000000000000000000000000000000000000&toToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   return (
