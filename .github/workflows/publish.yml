@@ -1,11 +1,6 @@
 name: Release & Publish
 
-on:
-  push:
-    tags:
-      - 'v*'
-  workflow_dispatch:
-
+on:[push]
 jobs:
   release:
     runs-on: ubuntu-latest
