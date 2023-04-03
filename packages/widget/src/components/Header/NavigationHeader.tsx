@@ -1,5 +1,3 @@
-//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
-import { useEffect, useRef } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -21,7 +19,6 @@ import { useFormContext } from 'react-hook-form';
 import { CompressOutlined } from '@mui/icons-material';
 
 export const NavigationHeader: React.FC = () => {
-  const first = useRef(true);
   const { t } = useTranslation();
   const { variant } = useWidgetConfig();
   const { navigate, navigateBack } = useNavigateBack();
@@ -32,8 +29,6 @@ export const NavigationHeader: React.FC = () => {
   const { getValues } = useFormContext();
 
   const { fromChain, fromToken, toToken, toChain } = getValues();
-
-
   const { getChainById } = useChains();
 
   const data1 = getChainById(fromChain);
@@ -41,9 +36,6 @@ export const NavigationHeader: React.FC = () => {
 
   const data2 = getChainById(toChain);
   const toChainKey = data2?.key;
-
-  console.log(toChainKey);
-
 
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)
@@ -92,28 +84,6 @@ export const NavigationHeader: React.FC = () => {
     }
   };
 
-
-  useEffect(()=>{
-    
-    if (!first.current && (fromChainKey || toChainKey)) {
-      const url = new URL(window.location as any);
-        let params = [];
-        if (fromChainKey && fromToken) {
-          params.push(`?fromChain=${fromChainKey}`);
-          params.push(`&fromToken=${fromToken}`);
-        }
-        if (toChainKey && toToken) {
-          params.push(`&toChain=${toChainKey}`);
-          params.push(`&toToken=${toToken}`);
-        }
-        const paramsString = params.join('');
-        window.history.replaceState(null, '', `${url.origin}${paramsString}`);
-       } else {
-        first.current = false
-      }
-  },[fromChainKey,toChainKey,fromToken,toToken])
-
-//http://localhost:3000/?fromChain=eth&toChain=eth&fromToken=0x0000000000000000000000000000000000000000&toToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   return (
     <HeaderAppBar elevation={0}>
       {backButtonRoutes.includes(path) ? (
