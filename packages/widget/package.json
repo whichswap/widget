@@ -1,5 +1,5 @@
 {
-  "name": "whichswap-widget",
+  "name": "@whichswap/widget",
   "version": "2.0.7",
   "description": "LI.FI Widget for cross-chain bridging and swapping. It will drive your multi-chain strategy and attract new users from everywhere.",
   "main": "./src/index.ts",
@@ -13,7 +13,8 @@
     "pre-commit": "lint-staged",
     "lint": "eslint --ext .tsx --ext .ts ./src",
     "lint:fix": "eslint --ext .tsx --ext .ts ./src --fix",
-    "prettier:fix": "prettier --write ./src/."
+    "prettier:fix": "prettier --write ./src/.",
+    "deploy": "npm publish"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -29,7 +30,7 @@
     "directory": "packages/widget"
   },
   "publishConfig": {
-    "@whichswap:registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/@whichswap"
   },
   "bugs": {
     "url": "https://github.com/lifinance/widget/issues"
