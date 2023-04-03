@@ -115,7 +115,7 @@ export const NavigationHeader: React.FC = () => {
        } else {
         first.current = false
       }
-  },[fromChainKey, toChainKey, toToken, toChain])
+  },[fromChainKey, toChainKey, toToken, fromToken])
 
 //http://localhost:3000/?fromChain=eth&toChain=eth&fromToken=0x0000000000000000000000000000000000000000&toToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   return (
