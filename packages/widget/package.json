@@ -95,5 +95,5 @@
     "extends": "../../.eslintrc"
   },
   "sideEffects": false,
-  "gitHead": "218b743205c2ae83064d4052857fa3a21ed6b692"
+  "gitHead": "bf391dec1c13026afe70bb1b519c83b877b14673"
 }
