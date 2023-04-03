@@ -27,16 +27,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
           registry-url: https://npm.pkg.github.com/
+          scope: '@whichswap'
       - name: Install modules
         run: yarn install
       - name: Build
         run: yarn release:build
       - name: Publish to npm
-        run: yarn release:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: yarn release:publish
