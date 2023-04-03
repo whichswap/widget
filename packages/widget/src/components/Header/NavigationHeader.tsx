@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useNavigateBack } from '../../hooks';
 import { useWallet, useWidgetConfig } from '../../providers';
+import { useChains } from '../../hooks';
 import {
   backButtonRoutes,
   navigationRoutes,
@@ -14,6 +15,7 @@ import {
 } from '../../utils';
 import { HeaderAppBar } from './Header.style';
 import { useHeaderActionStore } from './useHeaderActionStore';
+import { useFormContext } from 'react-hook-form';
 import { CompressOutlined } from '@mui/icons-material';
 
 export const NavigationHeader: React.FC = () => {
@@ -24,6 +26,9 @@ export const NavigationHeader: React.FC = () => {
   const { element } = useHeaderActionStore();
   const { pathname } = useLocation();
 
+  const { getValues } = useFormContext();
+
+  const { fromToken, toToken } = getValues();
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)
     : pathname;
@@ -107,7 +112,7 @@ export const NavigationHeader: React.FC = () => {
                 <IconButton
                   size="medium"
                   onClick={async () => {
-                    await navigator.clipboard.writeText(window.location);
+                    await navigator.clipboard.writeText(window.location as any);
                   }}
                   sx={{
                     marginRight: -1.25,
