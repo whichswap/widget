@@ -22,9 +22,9 @@
     }
   },
   "repository": {
-		"url": "https://github.com/whichspace/widget",
-		"type": "git"
-	},
+    "url": "https://github.com/whichspace/widget",
+    "type": "git"
+  },
   "devDependencies": {
     "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
