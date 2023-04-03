@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { useFormContext } from 'react-hook-form';
@@ -32,34 +32,23 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
 
   const data1 = getChainById(fromChain);
   const fromChainKey = data1?.key;
-  console.log(fromChainKey)
 
   const data2 = getChainById(toChain);
   const toChainKey = data2?.key;
-  console.log(toChainKey);
-
-  console.log(fromToken);
-  console.log(toToken);
 
   useEffect(()=>{
-    console.log(fromChainKey);
-    console.log(toChainKey);
-    if (fromChainKey ||  toChainKey) {
-      console.log("start")
+    if (fromChainKey || toChainKey) {
       const url = new URL(window.location as any);
         let params = [];
         if (fromChainKey && fromToken) {
-          console.log("from");
           params.push(`?fromChain=${fromChainKey}`);
           params.push(`&fromToken=${fromToken}`);
         }
         if (toChainKey && toToken) {
-          console.log("to");
           params.push(`&toChain=${toChainKey}`);
           params.push(`&toToken=${toToken}`);
         }
         const paramsString = params.join('');
-        console.log(paramsString)
         window.history.replaceState(null, '', `${url.origin}${paramsString}`);
     }
     },[fromChainKey,toChainKey,fromToken,toToken])
