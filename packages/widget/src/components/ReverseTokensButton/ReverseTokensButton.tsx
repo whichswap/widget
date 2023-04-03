@@ -31,14 +31,16 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
 
   const { getChainById } = useChains();
 
-  useEffect(()=>{
-    if (!first.current && (fromChain || toChain)) {
-      const data1 = getChainById(fromChain);
-      const fromChainKey = data1?.key;
-    
-      const data2 = getChainById(toChain);
-      const toChainKey = data2?.key;
+  const data1 = getChainById(fromChain);
+  const fromChainKey = data1?.key;
+  console.log(fromChainKey)
 
+  const data2 = getChainById(toChain);
+  const toChainKey = data2?.key;
+  console.log(toChainKey);
+
+  useEffect(()=>{
+    if (!first.current && (fromChainKey ||  toChainKey)) {
       const url = new URL(window.location as any);
         let params = [];
         if (fromChainKey && fromToken) {
@@ -50,13 +52,11 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
           params.push(`&toToken=${toToken}`);
         }
         const paramsString = params.join('');
-        if(paramsString){
-          window.history.replaceState(null, '', `${url.origin}${paramsString}`);
-        }
+        window.history.replaceState(null, '', `${url.origin}${paramsString}`);
        } else {
         first.current = false
       }
-    },[fromChain,toChain,fromToken,toToken])
+    },[fromChainKey,toChainKey,fromToken,toToken])
   
   return (
     <IconButton onClick={handleClick} size="small">
