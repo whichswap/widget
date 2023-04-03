@@ -1,5 +1,5 @@
 //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
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -21,6 +21,7 @@ import { useFormContext } from 'react-hook-form';
 import { CompressOutlined } from '@mui/icons-material';
 
 export const NavigationHeader: React.FC = () => {
+  const first = useRef(true);
   const { t } = useTranslation();
   const { variant } = useWidgetConfig();
   const { navigate, navigateBack } = useNavigateBack();
@@ -32,10 +33,13 @@ export const NavigationHeader: React.FC = () => {
 
   const { fromChain, fromToken, toToken, toChain } = getValues();
 
+
   const { getChainById } = useChains();
 
   const data1 = getChainById(fromChain);
   const fromChainKey = data1?.key;
+
+
 
   const data2 = getChainById(toChain);
   const toChainKey = data2?.key;
@@ -90,29 +94,30 @@ export const NavigationHeader: React.FC = () => {
 
 
   useEffect(()=>{
+    
+    if (!first.current && (fromChainKey ||  toChainKey)) {
+      const url = new URL(window.location as any);
+        let params = [];
+        if (fromChain) {
+          params.push(`?fromChain=${fromChainKey}`);
+        }
+        if (toChain) {
+          params.push(`&toChain=${fromChainKey}`);
+        }
+        if (fromToken) {
+          params.push(`&fromToken=${fromToken}`);
+        }
+        if (toToken) {
+          params.push(`&toToken=${toToken}`);
+        }
+        const paramsString = params.join('');
+        window.history.replaceState(null, '', `${url.origin}${paramsString}`);
+       } else {
+        first.current = false
+      }
+  },[fromChainKey, toChainKey, toToken, toChain])
 
-    const url = new URL(window.location as any);
-
-    let params = [];
-    if (fromChain) {
-      params.push(`?fromChain=${fromChainKey}`);
-    }
-    if (toChain) {
-      params.push(`&toChain=${fromChainKey}`);
-    }
-    if (fromToken) {
-      params.push(`&fromToken=${fromToken}`);
-    }
-    if (toToken) {
-      params.push(`&toToken=${toToken}`);
-    }
-    const paramsString = params.join('');
-
-    console.log(`${url.origin}${paramsString}`)
-    window.history.replaceState(null, '', `${url.origin}${paramsString}`);
-  },[fromChain, fromToken, toToken, toChain])
-
-
+//http://localhost:3000/?fromChain=eth&toChain=eth&fromToken=0x0000000000000000000000000000000000000000&toToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   return (
     <HeaderAppBar elevation={0}>
       {backButtonRoutes.includes(path) ? (
