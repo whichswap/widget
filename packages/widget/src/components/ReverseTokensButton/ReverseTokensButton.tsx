@@ -9,7 +9,6 @@ import { useChains } from '../../hooks';
 export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
   vertical,
 }) => {
-  const first = useRef(true);
   const { setValue, getValues } = useFormContext();
   const handleClick = () => {
     const [fromChain, fromToken, toChain, toToken] = getValues([
@@ -43,10 +42,9 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
   console.log(toToken);
 
   useEffect(()=>{
-    console.log(first.current);
     console.log(fromChainKey);
     console.log(toChainKey);
-    if (!first.current && (fromChainKey ||  toChainKey)) {
+    if (fromChainKey ||  toChainKey) {
       console.log("start")
       const url = new URL(window.location as any);
         let params = [];
@@ -63,10 +61,7 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
         const paramsString = params.join('');
         console.log(paramsString)
         window.history.replaceState(null, '', `${url.origin}${paramsString}`);
-       } else {
-        console.log("set false");
-        first.current = false
-      }
+    }
     },[fromChainKey,toChainKey,fromToken,toToken])
   
   return (
