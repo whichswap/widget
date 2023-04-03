@@ -1,2 +1,2 @@
 export const name = '@whichswap/widget';
-export const version = '2.19.0';
+export const version = '2.20.0';
