@@ -39,10 +39,10 @@ export const NavigationHeader: React.FC = () => {
   const data1 = getChainById(fromChain);
   const fromChainKey = data1?.key;
 
-
-
   const data2 = getChainById(toChain);
   const toChainKey = data2?.key;
+
+  console.log(toChainKey);
 
 
   const cleanedPathname = pathname.endsWith('/')
@@ -102,7 +102,7 @@ export const NavigationHeader: React.FC = () => {
           params.push(`?fromChain=${fromChainKey}`);
         }
         if (toChain) {
-          params.push(`&toChain=${fromChainKey}`);
+          params.push(`&toChain=${toChainKey}`);
         }
         if (fromToken) {
           params.push(`&fromToken=${fromToken}`);
