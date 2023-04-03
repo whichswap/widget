@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useNavigateBack } from '../../hooks';
 import { useWallet, useWidgetConfig } from '../../providers';
-import { useChains } from '../../hooks';
 import {
   backButtonRoutes,
   navigationRoutes,
@@ -15,7 +14,6 @@ import {
 } from '../../utils';
 import { HeaderAppBar } from './Header.style';
 import { useHeaderActionStore } from './useHeaderActionStore';
-import { useFormContext } from 'react-hook-form';
 import { CompressOutlined } from '@mui/icons-material';
 
 export const NavigationHeader: React.FC = () => {
@@ -25,17 +23,6 @@ export const NavigationHeader: React.FC = () => {
   const { account } = useWallet();
   const { element } = useHeaderActionStore();
   const { pathname } = useLocation();
-
-  const { getValues } = useFormContext();
-
-  const { fromChain, fromToken, toToken, toChain } = getValues();
-  const { getChainById } = useChains();
-
-  const data1 = getChainById(fromChain);
-  const fromChainKey = data1?.key;
-
-  const data2 = getChainById(toChain);
-  const toChainKey = data2?.key;
 
   const cleanedPathname = pathname.endsWith('/')
     ? pathname.slice(0, -1)
@@ -120,14 +107,7 @@ export const NavigationHeader: React.FC = () => {
                 <IconButton
                   size="medium"
                   onClick={async () => {
-                    const fromChainQuery = fromChainKey ? `?fromChain=${fromChainKey}` : `?fromChain=${fromChain}`;
-                    const fromTokenQuery = fromToken
-                      ? `&fromToken=${fromToken}`
-                      : '';
-                    const toTokenQuery = toToken ? `&toToken=${toToken}` : '';
-                    const toChainQuery = toChainKey ? `&toChain=${toChainKey}` : `&toChain=${toChain}`;
-                    const url = `https://whichswap.com${fromChainQuery}${toChainQuery}${fromTokenQuery}${toTokenQuery}`;
-                    await navigator.clipboard.writeText(url);
+                    await navigator.clipboard.writeText(window.location);
                   }}
                   sx={{
                     marginRight: -1.25,
