@@ -43,6 +43,9 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
   console.log(toToken);
 
   useEffect(()=>{
+    console.log(first.current);
+    console.log(fromChainKey);
+    console.log(toChainKey);
     if (!first.current && (fromChainKey ||  toChainKey)) {
       console.log("start")
       const url = new URL(window.location as any);
@@ -61,6 +64,7 @@ export const ReverseTokensButton: React.FC<{ vertical?: boolean }> = ({
         console.log(paramsString)
         window.history.replaceState(null, '', `${url.origin}${paramsString}`);
        } else {
+        console.log("set false");
         first.current = false
       }
     },[fromChainKey,toChainKey,fromToken,toToken])
