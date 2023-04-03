@@ -2,7 +2,10 @@ name: Release & Publish
 
 on:
   push:
-    branches: ['main']
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
 jobs:
   release:
     runs-on: ubuntu-latest
